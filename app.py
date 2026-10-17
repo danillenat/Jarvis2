@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='/static')
 
 # База данных в виде списка (пока в памяти)
 messages = []
@@ -19,6 +19,5 @@ def add_message():
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    # Этот блок сработает при локальном запуске
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
